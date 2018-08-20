@@ -33,16 +33,3 @@ services:
     restart: always
     volumes:
       - ./www:/www
-
-  phpmyadmin:
-    container_name: test_phpmyadmin
-    image: phpmyadmin/phpmyadmin:latest
-    environment:
-     MYSQL_ROOT_PASSWORD: root
-     PMA_HOST: mysql
-    ports:
-     - 8282:80
-    depends_on:
-     - mysql
-    volumes:
-     - /sessions

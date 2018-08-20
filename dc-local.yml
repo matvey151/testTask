@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+
+  mysql:
+    container_name: test_mysql
+    build:
+      context: .
+      dockerfile: config/Dockerfile-mysql
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: test
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+
+  nginx:
+    container_name: test_nginx
+    build:
+      context: .
+      dockerfile: config/Dockerfile-nginx-local
+    ports:
+      - 80:80
+      - 8090:8090
+    depends_on:
+      - mysql
+
+  php:
+    container_name: test_php
+    build:
+      context: .
+      dockerfile: config/Dockerfile-php
+    restart: always
+    volumes:
+      - ./www:/www
+
+  phpmyadmin:
+    container_name: test_phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+     MYSQL_ROOT_PASSWORD: root
+     PMA_HOST: mysql
+    ports:
+     - 8282:80
+    depends_on:
+     - mysql
+    volumes:
+     - /sessions

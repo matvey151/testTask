@@ -46,7 +46,7 @@ sudo apt install git
 ```
 3. Склонируй проект на свой компьютер
 ```bash
-git clone https://github.com/matvey151/test.git
+git clone https://github.com/matvey151/testTask.git
 ```
 3. Запусти
 ```bash

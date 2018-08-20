@@ -52,3 +52,5 @@ git clone https://github.com/matvey151/test.git
 ```bash
 docker-compose -f dc-local.yml up -d
 ```
+4. Запустить код можно по адресу:  
+Задача1: /part1/index.php, Задача2: /part2/index.php, Задача3: /part3/index.php  
